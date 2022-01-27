@@ -1,4 +1,4 @@
-import * as genresAPI from "./fakeGenreService";
+
 
 const medicines =
   [{ Prescription_ref: 1, Date: "7/27/2021", Patient_name: "Harper Serrurier", Doctor_Name: "Kassie Burrells", Medication: "Visipaque", Quantity: 3 },
@@ -108,27 +108,27 @@ export function getMedicines() {
   return medicines;
 }
 
-export function getMedicine(id) {
-  return medicines.find(m => m._id === id);
+export function getMedicine(Prescription_ref) {
+  return medicines.find(m => m.Prescription_ref === Prescription_ref);
 }
 
 export function saveMedicine(Medicine) {
-  let MedicineInDb = medicines.find(m => m._id === Medicine._id) || {};
-  MedicineInDb.name = Medicine.name;
-  MedicineInDb.genre = genresAPI.genres.find(g => g._id === Medicine.genreId);
-  MedicineInDb.numberInStock = Medicine.numberInStock;
-  MedicineInDb.dailyRentalRate = Medicine.dailyRentalRate;
+  let MedicineInDb = medicines.find(m => m.Prescription_ref === Medicine.Prescription_ref) || {};
+  MedicineInDb.Patient_name = Medicine.Patient_name;
+  MedicineInDb.Doctor_Name = Medicine.Doctor_Name;
+  MedicineInDb.Medication = Medicine.Medication;
+  MedicineInDb.Quantity = Medicine.Quantity;
 
-  if (!MedicineInDb._id) {
-    MedicineInDb._id = Date.now();
+  if (!MedicineInDb.Prescription_ref) {
+    MedicineInDb.Prescription_ref = Date.now();
     medicines.push(MedicineInDb);
   }
 
   return MedicineInDb;
 }
 
-export function deleteMedicine(id) {
-  let MedicineInDb = medicines.find(m => m._id === id);
+export function deleteMedicine(Prescription_ref) {
+  let MedicineInDb = medicines.find(m => m.Prescription_ref === Prescription_ref);
   medicines.splice(medicines.indexOf(MedicineInDb), 1);
   return MedicineInDb;
 }

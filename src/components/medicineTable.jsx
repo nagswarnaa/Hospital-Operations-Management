@@ -1,7 +1,6 @@
-import { property } from 'lodash';
 import React, { Component } from 'react';
-import TableHeader from './tableHeader'
-import TableBody from './tableBody'
+import Table from './table'
+
 
 class MedicineTable extends Component {
 
@@ -13,16 +12,20 @@ class MedicineTable extends Component {
         { property: 'Doctor_Name', label: 'Doctor Name' },
         { property: 'Medication', label: 'Medication' },
         { property: 'Quantity', label: 'Dose per day' },
-        { property: 'delete', content: medicine => <button className='btn btn-danger btn-sm' onClick={() => this.props.onDelete(medicine)}>Delete</button> },
+        {
+            property: 'delete', content: medicine => <button className='btn btn-danger btn-sm'
+                onClick={() => this.props.onDelete(medicine)}>
+                Delete
+            </button>
+        },
 
     ]
-    render() {
-        const { medicines, onDelete, onSort, sortColumn } = this.props
 
-        return (<table className="table table-striped">
-            <TableHeader columns={this.columns} onSort={onSort} sortColumn={sortColumn}></TableHeader>
-            <TableBody columns={this.columns} data={medicines} onDelete={onDelete}></TableBody>
-        </table>);
+
+    render() {
+        const { medicines, onSort, sortColumn } = this.props
+
+        return (<Table columns={this.columns} sortColumn={sortColumn} data={medicines} onSort={onSort}></Table>);
     }
 }
 

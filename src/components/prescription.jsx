@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
-import { getMedicines } from '../services/fakeMovieService'
+import MedicineTable from './medicineTable'
 import Pagination from './pagination'
 import { paginate } from '../utils/paginate';
-import MedicineTable from './medicineTable'
+import { getMedicines } from '../services/PrescriptionService'
 import _ from 'lodash'
 
 
 class Prescription extends Component {
+
     state = {
         medicines: getMedicines(),
-        pageSize: 8,
+        pageSize: 9,
         currentPage: 2,
         sortColumn: { property: 'Prescription_ref', order: 'asc' }
     }
+
     handleDelete = (medicine) => {
         const medicines = this.state.medicines.filter(m => m.Prescription_ref !== medicine.Prescription_ref)
         this.setState({ medicines })
     }
+
     handlePageChange = (page) => {
         this.setState({ currentPage: page })
     }
-
 
     handleSort = (sortColumn) => {
 
@@ -29,11 +31,15 @@ class Prescription extends Component {
 
 
     render() {
+
         const { length: count } = this.state.medicines
         const { medicines: allmedicines, pageSize, currentPage, sortColumn } = this.state
         const sorted = _.orderBy(allmedicines, [sortColumn.property], [sortColumn.order])
         const medicines = paginate(sorted, pageSize, currentPage)
+
         if (count === 0) return <p1>No Medicine is prescriped for this patient</p1>
+
+
         return (<React.Fragment>
             <p>Showing {count} prescribed medicines for the patient</p>
             <MedicineTable medicines={medicines} sortColumn={sortColumn} onDelete={this.handleDelete} onSort={this.handleSort} />
