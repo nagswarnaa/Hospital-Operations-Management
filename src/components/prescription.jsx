@@ -6,6 +6,10 @@ import { getMedicines } from '../services/PrescriptionService'
 import _ from 'lodash'
 
 
+
+
+
+
 class Prescription extends Component {
 
     state = {
@@ -42,6 +46,7 @@ class Prescription extends Component {
 
         return (<React.Fragment>
             <p>Showing {count} prescribed medicines for the patient</p>
+
             <MedicineTable medicines={medicines} sortColumn={sortColumn} onDelete={this.handleDelete} onSort={this.handleSort} />
             <Pagination itemCount={count} pageSize={this.state.pageSize} currentPage={this.state.currentPage} OnPageChange={this.handlePageChange} />
         </React.Fragment >
