@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import MedicineTable from './medicineTable'
 import Pagination from './pagination'
 import { paginate } from '../utils/paginate';
@@ -6,11 +7,13 @@ import { getMedicines } from '../services/PrescriptionService'
 import _ from 'lodash'
 
 
-
-
-
-
 class Prescription extends Component {
+
+    constructor() {
+        super();
+
+    }
+
 
     state = {
         medicines: getMedicines(),
@@ -36,8 +39,11 @@ class Prescription extends Component {
 
     render() {
 
+        console.log(this.props.match.params.id)
         const { length: count } = this.state.medicines
         const { medicines: allmedicines, pageSize, currentPage, sortColumn } = this.state
+
+
         const sorted = _.orderBy(allmedicines, [sortColumn.property], [sortColumn.order])
         const medicines = paginate(sorted, pageSize, currentPage)
 
@@ -54,4 +60,4 @@ class Prescription extends Component {
     }
 }
 
-export default Prescription;
+export default withRouter(Prescription);

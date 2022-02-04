@@ -1,12 +1,174 @@
 
 
+const patients = [{
+  Patient_id: 1,
+  Patient_name: "Ediva Shirrell",
+  Address: "Los Angeles",
+  Dob: "8/18/2020",
+  Phone: "818-145-3280",
+  Sex: "Female",
+  DOJ: "12/4/2021"
+}, {
+  Patient_id: 2,
+  Patient_name: "Jolynn Learmont",
+  Address: "Helsingborg",
+  Dob: "1/28/2019",
+  Phone: "968-139-0120",
+  Sex: "Male",
+  DOJ: "8/31/2021"
+}, {
+  Patient_id: 3,
+  Patient_name: "Sawyere Hatry",
+  Address: "Sundawenang",
+  Dob: "7/2/2018",
+  Phone: "198-313-4277",
+  Sex: "Male",
+  DOJ: "12/5/2021"
+}, {
+  Patient_id: 4,
+  Patient_name: "Harlen Riba",
+  Address: "Phu Kam Yao",
+  Dob: "2/14/2020",
+  Phone: "370-573-8689",
+  Sex: "Male",
+  DOJ: "8/18/2021"
+}, {
+  Patient_id: 5,
+  Patient_name: "Jesselyn Harry",
+  Address: "Bosen",
+  Dob: "8/31/2018",
+  Phone: "331-221-5788",
+  Sex: "Female",
+  DOJ: "10/24/2021"
+}, {
+  Patient_id: 6,
+  Patient_name: "Kinna Price",
+  Address: "Acharnés",
+  Dob: "4/12/2018",
+  Phone: "749-962-2156",
+  Sex: "Male",
+  DOJ: "6/12/2021"
+}, {
+  Patient_id: 7,
+  Patient_name: "Trudie Fishly",
+  Address: "Fenlu",
+  Dob: "8/14/2019",
+  Phone: "426-587-5898",
+  Sex: "Male",
+  DOJ: "7/1/2021"
+}, {
+  Patient_id: 8,
+  Patient_name: "Marie Sloam",
+  Address: "Sunne",
+  Dob: "10/9/2018",
+  Phone: "458-457-5047",
+  Sex: "Female",
+  DOJ: "3/12/2021"
+}, {
+  Patient_id: 9,
+  Patient_name: "Rafaela De la croix",
+  Address: "Luče",
+  Dob: "7/7/2017",
+  Phone: "494-743-1634",
+  Sex: "Female",
+  DOJ: "9/20/2021"
+}, {
+  Patient_id: 10,
+  Patient_name: "Star Grishaev",
+  Address: "Villeta",
+  Dob: "12/5/2020",
+  Phone: "181-240-2585",
+  Sex: "Female",
+  DOJ: "10/6/2021"
+}, {
+  Patient_id: 11,
+  Patient_name: "Munmro Masson",
+  Address: "Kuty",
+  Dob: "7/2/2019",
+  Phone: "859-456-7927",
+  Sex: "Male",
+  DOJ: "12/21/2021"
+}, {
+  Patient_id: 12,
+  Patient_name: "Gerri Jocelyn",
+  Address: "Daykitin",
+  Dob: "12/29/2019",
+  Phone: "463-198-1120",
+  Sex: "Female",
+  DOJ: "7/29/2021"
+}, {
+  Patient_id: 13,
+  Patient_name: "Efren Demangeon",
+  Address: "Panagyurishte",
+  Dob: "12/21/2021",
+  Phone: "812-521-8870",
+  Sex: "Genderfluid",
+  DOJ: "4/4/2021"
+}, {
+  Patient_id: 14,
+  Patient_name: "Ignatius Muffett",
+  Address: "Cadiz",
+  Dob: "6/4/2020",
+  Phone: "306-693-2792",
+  Sex: "Female",
+  DOJ: "4/7/2021"
+}, {
+  Patient_id: 15,
+  Patient_name: "Prissie Cufflin",
+  Address: "Mayantoc",
+  Dob: "5/21/2021",
+  Phone: "964-671-6831",
+  Sex: "Female",
+  DOJ: "11/7/2021"
+}, {
+  Patient_id: 16,
+  Patient_name: "Dun Ryding",
+  Address: "Mojoroto",
+  Dob: "12/27/2019",
+  Phone: "688-579-5968",
+  Sex: "Female",
+  DOJ: "6/6/2021"
+}, {
+  Patient_id: 17,
+  Patient_name: "Briant Throssell",
+  Address: "Uruguaiana",
+  Dob: "6/8/2021",
+  Phone: "962-760-5184",
+  Sex: "Female",
+  DOJ: "5/22/2021"
+}, {
+  Patient_id: 18,
+  Patient_name: "Saunder McCree",
+  Address: "Tagum",
+  Dob: "4/5/2021",
+  Phone: "406-578-0257",
+  Sex: "Female",
+  DOJ: "11/27/2021"
+}, {
+  Patient_id: 19,
+  Patient_name: "Finley Cornewell",
+  Address: "Cincinnati",
+  Dob: "2/26/2021",
+  Phone: "513-517-1871",
+  Sex: "Male",
+  DOJ: "5/7/2021"
+}, {
+  Patient_id: 20,
+  Patient_name: "Catina Patten",
+  Address: "Zhonghechang",
+  Dob: "5/3/2020",
+  Phone: "737-370-9317",
+  Sex: "Female",
+  DOJ: "9/24/2021"
+}]
+
 const medicines =
-  [{ Prescription_ref: 1, Date: "7/27/2021", Patient_name: "Harper Serrurier", Doctor_Name: "Kassie Burrells", Medication: "Visipaque", Quantity: 3 },
-  { Prescription_ref: 2, Date: "1/1/2022", Patient_name: "Roley Ozanne", Doctor_Name: "Van Sheaber", Medication: "Lisinopril", Quantity: 4 },
-  { Prescription_ref: 3, Date: "9/14/2021", Patient_name: "Hildegaard Golly", Doctor_Name: "Christalle Kerwick", Medication: "Berberis e fruct. ", Quantity: 10 },
-  { Prescription_ref: 4, Date: "11/28/2021", Patient_name: "Carolin Phillippo", Doctor_Name: "Nessy Eckery", Medication: " Antiseptic Hand CLEANSING", Quantity: 8 },
+  [{ Prescription_ref: 1, Date: "7/27/2021", Patient_name: "Ediva Shirrell", Doctor_Name: "Kassie Burrells", Medication: "Visipaque", Quantity: 3 },
+  { Prescription_ref: 2, Date: "1/1/2022", Patient_name: "Ediva Shirrell", Doctor_Name: "Van Sheaber", Medication: "Lisinopril", Quantity: 4 },
+  { Prescription_ref: 3, Date: "9/14/2021", Patient_name: "Ediva Shirrell", Doctor_Name: "Christalle Kerwick", Medication: "Berberis e fruct. ", Quantity: 10 },
+  { Prescription_ref: 4, Date: "11/28/2021", Patient_name: "Ediva Shirrell", Doctor_Name: "Nessy Eckery", Medication: " Antiseptic Hand CLEANSING", Quantity: 8 },
   { Prescription_ref: 5, Date: "9/29/2021", Patient_name: "Mignon Goshawke", Doctor_Name: "Kent Londsdale", Medication: "Hepar Magnesium ", Quantity: 3 },
-  { Prescription_ref: 6, Date: "8/22/2021", Patient_name: "Alanson Leel", Doctor_Name: "Saunder Brigg", Medication: "Spironolactone", Quantity: 1 },
+  { Prescription_ref: 6, Date: "8/22/2021", Patient_name: "Jolynn Learmont", Doctor_Name: "Saunder Brigg", Medication: "Spironolactone", Quantity: 1 },
   { Prescription_ref: 7, Date: "12/17/2021", Patient_name: "Lucita Beteriss", Doctor_Name: "Cherlyn Beardmore", Medication: "acyclovir", Quantity: 5 },
   { Prescription_ref: 8, Date: "6/20/2021", Patient_name: "Brittany Shepley", Doctor_Name: "Shelagh Hallowell", Medication: "Methocarbamol", Quantity: 7 },
   { Prescription_ref: 9, Date: "3/20/2021", Patient_name: "Katharyn Tinkler", Doctor_Name: "Kane Learman", Medication: " Skin Anti Wrinkle", Quantity: 3 },
@@ -103,6 +265,10 @@ const medicines =
   { Prescription_ref: 100, Date: "7/22/2021", Patient_name: "Koren Henze", Doctor_Name: "Samara Lowy", Medication: "Isopropyl Alcohol", Quantity: 8 }
 
   ];
+
+export function getPatients() {
+  return patients;
+}
 
 export function getMedicines() {
   return medicines;
