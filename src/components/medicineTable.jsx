@@ -12,12 +12,7 @@ class MedicineTable extends Component {
         { property: 'Doctor_Name', label: 'Doctor Name' },
         { property: 'Medication', label: 'Medication' },
         { property: 'Quantity', label: 'Dose per day' },
-        {
-            property: 'delete', content: medicine => <button className='btn btn-danger btn-sm'
-                onClick={() => this.props.onDelete(medicine)}>
-                Delete
-            </button>
-        },
+
 
     ]
 
