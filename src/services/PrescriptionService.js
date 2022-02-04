@@ -164,12 +164,12 @@ const patients = [{
 
 const medicines =
   [{ Prescription_ref: 1, Date: "7/27/2021", Patient_name: "Ediva Shirrell", Doctor_Name: "Kassie Burrells", Medication: "Visipaque", Quantity: 3 },
-  { Prescription_ref: 2, Date: "1/1/2022", Patient_name: "Ediva Shirrell", Doctor_Name: "Van Sheaber", Medication: "Lisinopril", Quantity: 4 },
-  { Prescription_ref: 3, Date: "9/14/2021", Patient_name: "Ediva Shirrell", Doctor_Name: "Christalle Kerwick", Medication: "Berberis e fruct. ", Quantity: 10 },
+  { Prescription_ref: 1, Date: "1/1/2022", Patient_name: "Ediva Shirrell", Doctor_Name: "Van Sheaber", Medication: "Lisinopril", Quantity: 4 },
+  { Prescription_ref: 1, Date: "9/14/2021", Patient_name: "Ediva Shirrell", Doctor_Name: "Christalle Kerwick", Medication: "Berberis e fruct. ", Quantity: 10 },
   { Prescription_ref: 4, Date: "11/28/2021", Patient_name: "Ediva Shirrell", Doctor_Name: "Nessy Eckery", Medication: " Antiseptic Hand CLEANSING", Quantity: 8 },
   { Prescription_ref: 5, Date: "9/29/2021", Patient_name: "Mignon Goshawke", Doctor_Name: "Kent Londsdale", Medication: "Hepar Magnesium ", Quantity: 3 },
   { Prescription_ref: 6, Date: "8/22/2021", Patient_name: "Jolynn Learmont", Doctor_Name: "Saunder Brigg", Medication: "Spironolactone", Quantity: 1 },
-  { Prescription_ref: 7, Date: "12/17/2021", Patient_name: "Lucita Beteriss", Doctor_Name: "Cherlyn Beardmore", Medication: "acyclovir", Quantity: 5 },
+  { Prescription_ref: 2, Date: "12/17/2021", Patient_name: "Lucita Beteriss", Doctor_Name: "Cherlyn Beardmore", Medication: "acyclovir", Quantity: 5 },
   { Prescription_ref: 8, Date: "6/20/2021", Patient_name: "Brittany Shepley", Doctor_Name: "Shelagh Hallowell", Medication: "Methocarbamol", Quantity: 7 },
   { Prescription_ref: 9, Date: "3/20/2021", Patient_name: "Katharyn Tinkler", Doctor_Name: "Kane Learman", Medication: " Skin Anti Wrinkle", Quantity: 3 },
   { Prescription_ref: 10, Date: "4/13/2021", Patient_name: "Giuseppe Dingle", Doctor_Name: "Axel Lynes", Medication: "ANTIBACTERIAL FOAMING", Quantity: 7 },
