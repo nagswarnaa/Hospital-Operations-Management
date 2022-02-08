@@ -22,6 +22,10 @@ class Prescription extends Component {
         currentPage: 1,
         sortColumn: { property: 'Prescription_ref', order: 'asc' }
     }
+    componentDidMount() {
+        // this.setState({ medicines: getMedicines() })
+        // console.log("hh");
+    }
 
     handleDelete = (medicine) => {
         const medicines = this.state.medicines.filter(m => m.Prescription_ref !== medicine.Prescription_ref)
