@@ -12,9 +12,13 @@ class PatientTable extends Component {
     state = {
         patients: getPatients(),
         pageSize: 9,
-        currentPage: 2,
+        currentPage: localStorage.getItem("currentPage") ? localStorage.getItem("currentPage") : 1,
         sortColumn: { property: 'Patient_id', order: 'asc' },
 
+    }
+    componentDidMount() {
+        // this.setState({ patients: getPatients() })
+        // console.log("hh");
     }
 
     columns = [
@@ -41,6 +45,7 @@ class PatientTable extends Component {
 
     ]
     handlePageChange = (page) => {
+        localStorage.setItem("currentPage", page);
         this.setState({ currentPage: page })
     }
 
@@ -57,6 +62,10 @@ class PatientTable extends Component {
         const { patients: allpatients, pageSize, currentPage, sortColumn } = this.state
         const sorted = _.orderBy(allpatients, [sortColumn.property], [sortColumn.order])
         const patients = paginate(sorted, pageSize, currentPage)
+        let counts = allpatients && allpatients.length
+        console.log(counts)
+
+
 
         if (count === 0) return <p1>No Medicine is prescriped for this patient</p1>
         return (

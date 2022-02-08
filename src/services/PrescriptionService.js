@@ -1,4 +1,6 @@
-
+import firebaseConfig from "../utils/config";
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 const patients = [{
   Patient_id: 1,
@@ -266,7 +268,26 @@ const medicines =
 
   ];
 
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function fire_getPatients(db) {
+  const citiesCol = collection(db, 'appointments');
+  const citySnapshot = await getDocs(citiesCol);
+  const cityList = citySnapshot.docs.map(doc => doc.data());
+  return cityList;
+}
+
 export function getPatients() {
+  let data;
+  fire_getPatients(db).then(res => {
+    data = res
+    console.log(data);
+  })
+    .catch(error => {
+      console.log(error);
+    })
+
   return patients;
 }
 
