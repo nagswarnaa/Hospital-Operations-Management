@@ -3,6 +3,7 @@ import './App.css';
 import NavBar from './components/navbar';
 import Prescription from './components/prescription';
 import PatientTable from './components/patient';
+import Transaction from './components/transaction';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
 
           <Route path="/patient/:id" >
             <Prescription />
+          </Route>
+          <Route path="/transaction" >
+            <Transaction />
           </Route>
         </Switch>
       </Router>

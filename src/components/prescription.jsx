@@ -10,10 +10,7 @@ import _ from 'lodash'
 
 class Prescription extends Component {
 
-    constructor() {
-        super();
 
-    }
 
 
     state = {
@@ -27,10 +24,7 @@ class Prescription extends Component {
         // console.log("hh");
     }
 
-    handleDelete = (medicine) => {
-        const medicines = this.state.medicines.filter(m => m.Prescription_ref !== medicine.Prescription_ref)
-        this.setState({ medicines })
-    }
+
 
     handlePageChange = (page) => {
         this.setState({ currentPage: page })
@@ -55,13 +49,13 @@ class Prescription extends Component {
         const sorted = _.orderBy(meds, [sortColumn.property], [sortColumn.order])
         const medicines = paginate(sorted, pageSize, currentPage)
 
-        if (count === 0) return <p1>No Medicine is prescriped for this patient</p1>
+        if (count === 0) return <p1>No Medicine is prescribed for this patient</p1>
 
 
         return (<React.Fragment>
             <p>Showing {count} prescribed medicines for the patient</p>
 
-            <MedicineTable medicines={medicines} sortColumn={sortColumn} onDelete={this.handleDelete} onSort={this.handleSort} />
+            <MedicineTable medicines={medicines} sortColumn={sortColumn} onSort={this.handleSort} />
             <Pagination itemCount={count} pageSize={this.state.pageSize} currentPage={this.state.currentPage} OnPageChange={this.handlePageChange} />
         </React.Fragment >
         );
