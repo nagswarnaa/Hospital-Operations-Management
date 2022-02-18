@@ -13,7 +13,7 @@ class Transaction extends Component {
         { property: 'transactionAmt', label: 'Transaction Amount' },
         { property: 'updated_on', label: 'Updated On' },
         { property: 'status', label: 'Status' },
-        { property: 'complete', content: transaction => <button className='btn btn-secondary btn-sm' onClick={() => this.handleUpdate(transaction)}>Complete</button> }
+        { property: 'complete', content: transaction => <button className={this.buttonClass(transaction)} onClick={() => this.handleUpdate(transaction)}>Complete</button> }
 
     ]
     state = {
@@ -23,6 +23,10 @@ class Transaction extends Component {
         sortColumn: { property: 'transactionId', order: 'asc' }
     }
 
+    buttonClass = (transaction) => {
+        if (transaction.status === 'pending') return 'btn btn-secondary btn-sm'
+        else return 'btn btn-secondary btn-sm disabled'
+    }
 
     handleUpdate = async (transaction) => {
         const taskDocRef = doc(db, 'transactions', transaction.id)
@@ -35,6 +39,7 @@ class Transaction extends Component {
         } catch (err) {
             alert(err)
         }
+
     }
 
 
