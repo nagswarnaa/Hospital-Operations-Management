@@ -6,6 +6,8 @@ import { paginate } from '../utils/paginate';
 import { getMedicines } from '../services/PrescriptionService'
 import { useParams } from 'react-router-dom';
 import _ from 'lodash'
+import { collection, getDocs, doc, updateDoc } from "firebase/firestore"
+import { db } from '../utils/config'
 
 
 class Prescription extends Component {
@@ -19,9 +21,16 @@ class Prescription extends Component {
         currentPage: 1,
         sortColumn: { property: 'Prescription_ref', order: 'asc' }
     }
+    fire_getprescrption = async (db) => {
+        const medicinessCol = collection(db, 'prescription');
+        const medicinesSnapshot = await getDocs(medicinessCol);
+        const medicinesList = medicinesSnapshot.docs.map(doc => doc.data());
+        console.log("all medicines", medicinesList)
+        this.setState({ medicines: medicinesList })
+    }
+
     componentDidMount() {
-        // this.setState({ medicines: getMedicines() })
-        // console.log("hh");
+        this.fire_getprescrption(db);
     }
 
 
@@ -38,10 +47,11 @@ class Prescription extends Component {
 
     render() {
         let { id } = this.props.match.params;
-        id = parseInt(id, 10)
+        console.log("patient id", id)
 
         const { medicines: allmedicines, pageSize, currentPage, sortColumn } = this.state
-        const meds = allmedicines && allmedicines.length > 0 && allmedicines.filter(item => item.Prescription_ref === id)
+        const meds = allmedicines && allmedicines.length > 0 && allmedicines.filter(item => item.patientId === id)
+        console.log(meds);
         const { length: count } = meds
 
 

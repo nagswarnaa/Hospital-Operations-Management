@@ -6,12 +6,10 @@ class MedicineTable extends Component {
 
 
     columns = [
-        { property: 'Prescription_ref', label: 'Prescription ID' },
-        { property: 'Date', label: 'Date of Issue' },
-        { property: 'Patient_name', label: 'Patient Name' },
-        { property: 'Doctor_Name', label: 'Doctor Name' },
-        { property: 'Medication', label: 'Medication' },
-        { property: 'Quantity', label: 'Dose per day' },
+        { property: 'patientId', label: 'Patinet ID' },
+        { property: 'date_of_issue', label: 'Date of Issue' },
+        { property: 'medicine', label: 'Medication Name' },
+        { property: 'dose', label: 'Dose per day' },
 
 
     ]

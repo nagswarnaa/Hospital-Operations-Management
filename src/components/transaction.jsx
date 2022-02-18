@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { collection, getDocs, doc, updateDoc } from "firebase/firestore"
 import Table from './table'
 import Pagination from './pagination'
-import { Link } from 'react-router-dom';
-import { paginate } from '../utils/paginate';
 import _ from 'lodash'
+import { collection, getDocs, doc, updateDoc } from "firebase/firestore"
 import { db } from '../utils/config'
+import { paginate } from '../utils/paginate';
 
 class Transaction extends Component {
     columns = [
@@ -13,14 +12,9 @@ class Transaction extends Component {
         { property: 'transactionId', label: 'Transaction ID' },
         { property: 'transactionAmt', label: 'Transaction Amount' },
         { property: 'updated_on', label: 'Updated On' },
-        { property: 'status', label: 'Status' }
-        // {
-        //     property: 'complete', content:
-        //         <button className='btn btn-secondary btn-sm'> Complete</ button>
+        { property: 'status', label: 'Status' },
+        { property: 'complete', content: transaction => <button className='btn btn-secondary btn-sm' onClick={() => this.handleUpdate(transaction)}>Complete</button> }
 
-
-
-        // }
     ]
     state = {
         transactions: [],
@@ -29,25 +23,25 @@ class Transaction extends Component {
         sortColumn: { property: 'transactionId', order: 'asc' }
     }
 
-    // handleUpdate = async (e) => {
-    //     e.preventDefault()
-    //     const taskDocRef = doc(db, 'transactions', id)
-    //     try {
-    //         await updateDoc(taskDocRef, {
-    //             title: title,
-    //             description: description
-    //         })
-    //         onClose()
-    //     } catch (err) {
-    //         alert(err)
-    //     }
-    // }
+
+    handleUpdate = async (transaction) => {
+        const taskDocRef = doc(db, 'transactions', transaction.id)
+        try {
+            await updateDoc(taskDocRef, {
+                status: "completed",
+                updated_on: new Date().toString()
+            })
+
+        } catch (err) {
+            alert(err)
+        }
+    }
 
 
     fire_gettransactions = async (db) => {
         const transactionssCol = collection(db, 'transactions');
         const transactionsSnapshot = await getDocs(transactionssCol);
-        const transactionsList = transactionsSnapshot.docs.map(doc => doc.data());
+        const transactionsList = transactionsSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
 
         this.setState({ transactions: transactionsList })
     }

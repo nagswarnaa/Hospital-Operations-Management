@@ -88,7 +88,7 @@ class PatientTable extends Component {
 
 
 
-        if (counts === 0) return <p1>No Medicine is prescriped for this patient</p1>
+        if (counts === 0) return <p>No Medicine is prescriped for this patient</p>
         return (
             <React.Fragment>
                 <Table columns={this.columns} sortColumn={this.state.sortColumn} data={patients} onSort={this.handleSort}></Table>
