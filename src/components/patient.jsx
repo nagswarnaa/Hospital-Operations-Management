@@ -5,32 +5,52 @@ import { paginate } from '../utils/paginate';
 import { getPatients } from '../services/PrescriptionService'
 import _ from 'lodash'
 import { Link } from 'react-router-dom';
+import { collection, doc, updateDoc, getDocs } from "firebase/firestore"
+import { db } from '../utils/config'
+
 
 
 class PatientTable extends Component {
 
     state = {
-        patients: getPatients(),
+        patients: [],
         pageSize: 9,
         currentPage: localStorage.getItem("currentPage") ? localStorage.getItem("currentPage") : 1,
-        sortColumn: { property: 'Patient_id', order: 'asc' },
+        sortColumn: { property: 'patient_ref', order: 'asc' },
+
+    }
+    fire_getPatients = async (db) => {
+        const patientsCol = collection(db, 'patients');
+
+
+        const PatientsSnapshot = await getDocs(patientsCol);
+
+
+        const PatientsList = PatientsSnapshot.docs.map(doc => doc.data());
+
+        console.log("PatientsList", PatientsList);
+        this.setState({ patients: PatientsList })
+
+        return PatientsList;
 
     }
     componentDidMount() {
-        // this.setState({ patients: getPatients() })
-        // console.log("hh");
+        let data = this.fire_getPatients(db);
+
+        // this.setState({ patients: data })
+        console.log("data patient", data)
+
     }
 
+
     columns = [
-        { property: 'Patient_id', label: 'Patient ID' },
-        { property: 'Patient_name', label: 'Patient Name' },
-        { property: 'Address', label: 'Address' },
-        { property: 'Dob', label: 'Date Of Birth' },
-        { property: 'Phone', label: 'Phone' },
-        { property: 'Sex', label: 'Sex' },
-        { property: 'DOJ', label: 'Date Of Joining' },
+        { property: 'patient_ref', label: 'Patient ID' },
+        { property: 'f_name', label: ' First Name' },
+        { property: 'l_name', label: 'Last Name' },
+        { property: 'mobile', label: 'Phone Number' },
+
         {
-            property: 'show', content: medicine => <Link to={`/patient/${medicine.Patient_id}`}
+            property: 'show', content: medicine => <Link to={`/patient/${medicine.patient_ref}`}
                 state={{
                     medicine
                 }}
@@ -50,7 +70,6 @@ class PatientTable extends Component {
     }
 
     handleSort = (sortColumn) => {
-
         this.setState({ sortColumn })
     }
 
@@ -58,20 +77,22 @@ class PatientTable extends Component {
 
     render() {
 
-        const { length: count } = this.state.patients
+        // const { count } = this.state.patientsx
         const { patients: allpatients, pageSize, currentPage, sortColumn } = this.state
+
         const sorted = _.orderBy(allpatients, [sortColumn.property], [sortColumn.order])
         const patients = paginate(sorted, pageSize, currentPage)
         let counts = allpatients && allpatients.length
-        console.log(counts)
+        console.log("this state patients", this.state.patients);
 
 
 
-        if (count === 0) return <p1>No Medicine is prescriped for this patient</p1>
+
+        if (counts === 0) return <p>No Medicine is prescriped for this patient</p>
         return (
             <React.Fragment>
                 <Table columns={this.columns} sortColumn={this.state.sortColumn} data={patients} onSort={this.handleSort}></Table>
-                <Pagination itemCount={count} pageSize={this.state.pageSize} currentPage={this.state.currentPage} OnPageChange={this.handlePageChange} />
+                <Pagination itemCount={counts} pageSize={this.state.pageSize} currentPage={this.state.currentPage} OnPageChange={this.handlePageChange} />
             </React.Fragment >);
     }
 }

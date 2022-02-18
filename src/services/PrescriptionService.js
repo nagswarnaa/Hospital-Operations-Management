@@ -1,6 +1,5 @@
-import firebaseConfig from "../utils/config";
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { collection, query, orderBy, onSnapshot, getDocs } from "firebase/firestore"
+import { db } from '../utils/config'
 
 const patients = [{
   Patient_id: 1,
@@ -268,27 +267,33 @@ const medicines =
 
   ];
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+
 
 async function fire_getPatients(db) {
-  const citiesCol = collection(db, 'appointments');
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  return cityList;
+  const patientsCol = collection(db, 'patients');
+
+
+  const PatientsSnapshot = await getDocs(patientsCol);
+
+
+  const PatientsList = PatientsSnapshot.docs.map(doc => doc.data());
+
+  console.log("PatientsList", PatientsList);
+  return PatientsList;
+
 }
 
-export function getPatients() {
-  let data;
-  fire_getPatients(db).then(res => {
-    data = res
-    console.log(data);
-  })
-    .catch(error => {
-      console.log(error);
-    })
+export async function getPatients() {
+  let data = await fire_getPatients(db);
+  // let data = [];
+  // const q = query(collection(db, 'patients'), orderBy('dob', 'desc'))
+  // onSnapshot(q, (querySnapshot) => {
+  //   data = querySnapshot.docs.map(doc => doc.data()
+  //   )
+  //})
 
-  return patients;
+  console.log("data", data);
+  return data;
 }
 
 export function getMedicines() {
